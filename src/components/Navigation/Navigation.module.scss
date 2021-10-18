@@ -1,0 +1,14 @@
+.link {
+  display: inline-block;
+  // flex-direction: row;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  color: #2a363b;
+  font-size: 18px;
+}
+
+.activeLink {
+  // composes: link;
+  color: #2196f3;
+}
