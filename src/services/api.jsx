@@ -42,3 +42,15 @@ export {
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
 // https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>&language=en-US&page=1
+
+// function checkData(searchQuery) {
+//   return response => {
+//     // console.log(searchQuery);
+//     if (response.ok) {
+//       return response.json();
+//     }
+//     return Promise.reject(
+//       new Error(`no results were found for your search ${searchQuery}`),
+//     ); // если 404
+//   };
+// }

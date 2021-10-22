@@ -1,25 +1,24 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as MoviesAPI from '../../services/api';
 
 export default function CastSubView() {
   const { movieId } = useParams();
-  const [cast, setcast] = useState(null);
-  const location = useLocation();
+  const [cast, setCast] = useState(null);
+  // const location = useLocation();
   // const params = useParams();
   // console.log(params);
   // console.log(movieId);
   // console.log(cast);
-  console.log(location.state);
+  // console.log(location.state);
 
   useEffect(() => {
     MoviesAPI.fetchfMovieCast(movieId)
-      .then(movie => {
-        console.log(movie);
-        return movie.cast;
-      })
-      .then(setcast);
+      .then(movie => movie.cast)
+      .then(setCast)
+      .catch(error => console.log(error));
   }, [movieId]);
+
   return (
     <div>
       <h3>Cast</h3>

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 export default function GalleryList({ moviesBySearch }) {
   // console.log({ moviesBySearch });
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   return (
     <ul className="list">

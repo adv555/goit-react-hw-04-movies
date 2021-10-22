@@ -7,12 +7,13 @@ function Home() {
   const [movies, setMovies] = useState(null);
 
   // console.log(movies);
-  console.log(location);
+  // console.log(location);
 
   useEffect(() => {
     return MovieAPI.fetchTrending()
       .then(movie => movie.results)
-      .then(setMovies);
+      .then(setMovies)
+      .catch(error => console.log(error));
   }, []);
 
   return (

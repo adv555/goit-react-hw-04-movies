@@ -1,22 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as MoviesAPI from '../../services/api';
 
 function ReviewSubView() {
   const { movieId } = useParams();
-  const location = useLocation();
+  // const location = useLocation();
   const [reviews, setReview] = useState(null);
   //   console.log(params);
   //   console.log(reviews);
-  console.log(location);
+  // console.log(location);
 
   useEffect(() => {
     MoviesAPI.fetchfMovieReview(movieId)
-      .then(movie => {
-        // console.log(movie);
-        return movie.results;
-      })
-      .then(setReview);
+      .then(movie => movie.results)
+      .then(setReview)
+      .catch(error => console.log(error));
   }, [movieId]);
 
   return (

@@ -10,7 +10,6 @@ export default function Searchbar({ onSubmit }) {
     e.preventDefault();
 
     onSubmit(query);
-
     setQuery('');
   };
 

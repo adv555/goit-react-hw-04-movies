@@ -18,10 +18,13 @@ function MovieInfo() {
   const { url, path } = useRouteMatch();
   const location = useLocation();
   const history = useHistory();
+
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    MoviesAPI.fetchFullInfoOfMovie(movieId).then(setMovie);
+    MoviesAPI.fetchFullInfoOfMovie(movieId)
+      .then(setMovie)
+      .catch(error => console.log(error));
   }, [movieId]);
 
   // console.log(movieId);
@@ -29,7 +32,8 @@ function MovieInfo() {
   // console.log(match);
   // console.log(params);
   // console.log(url, path);
-  console.log(location.state);
+  console.log(location);
+  console.log(history);
 
   const onGoBack = () => {
     // console.log(e);
