@@ -10,11 +10,12 @@ export default function Searchbar({ onSubmit }) {
     e.preventDefault();
 
     onSubmit(query);
+
     setQuery('');
   };
 
   return (
-    <header className="Searchbar">
+    <div className="Searchbar">
       <form className="SearchForm" onSubmit={handleSubmit}>
         <button type="submit" className="SearchForm-button">
           <span className="SearchForm-button-label">Search</span>
@@ -29,6 +30,6 @@ export default function Searchbar({ onSubmit }) {
           onChange={handleChange}
         />
       </form>
-    </header>
+    </div>
   );
 }

@@ -6,7 +6,7 @@ const MOVIE_BY_ID = `${BASE_URL}/movie`;
 
 const fetchTrending = (page = 1) => {
   const url = `${TRENDING_URL}&page=${page}`;
-  return fetch(url).then(response => response.json().catch(console.error()));
+  return fetch(url).then(response => response.json());
 };
 
 const fetchMoviesBySearch = (searchQuery, page) => {
