@@ -8,10 +8,9 @@ import {
   useLocation,
   useHistory,
 } from 'react-router-dom';
-import { TiArrowLeftThick } from 'react-icons/ti';
+// import { TiArrowLeftThick } from 'react-icons/ti';
 import * as MoviesAPI from '../services/api';
-// import CastSubView from '../components/CastSubView';
-// import ReviewSubView from '../components/ReviewSubView';
+import OnGoBackButton from '../components/Buttons/OnGoBackBtn/OnGoBackBtn';
 
 const CastSubView = lazy(() =>
   import('../components/CastSubView' /* webpackChunkName: "cast-subview" */),
@@ -53,10 +52,14 @@ function MovieInfo() {
     <>
       {movie && movie.status === 'Released' && (
         <>
-          <button type="button" className="Button" onClick={onGoBack}>
+          <OnGoBackButton
+            onClick={onGoBack}
+            label={location?.state?.from?.label ?? 'Go Back'}
+          />
+          {/* <button type="button" className="Button" onClick={onGoBack}>
             <TiArrowLeftThick />
             {location?.state?.from?.label ?? 'Go Back'}
-          </button>
+          </button> */}
           <div className="card">
             <div className="cardThumb">
               <img
@@ -129,3 +132,5 @@ export default MovieInfo;
 //     return <span key={`${id}+${name}`}>{Object.values(name)}&nbsp;&nbsp;</span>;
 //   });
 // }
+
+/* <OnGoBackButton onClick={onGoBack} label={location?.state?.from?.label ?? 'Go Back'} /> */

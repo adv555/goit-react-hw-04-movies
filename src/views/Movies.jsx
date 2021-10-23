@@ -13,10 +13,6 @@ const Movies = () => {
   const history = useHistory();
   const location = useLocation();
 
-  // console.log(query);
-  // console.log(history);
-  // console.log(location.search);
-
   useEffect(() => {
     if (!query) {
       return;
@@ -37,7 +33,7 @@ const Movies = () => {
     const getLocationSearch = new URLSearchParams(location.search).get(
       'search',
     );
-    // console.log(getLocationSearch);
+
     setQuery(getLocationSearch);
   }, [location.search]);
 
@@ -48,6 +44,7 @@ const Movies = () => {
       {movies && movies.length < 1 && <NothingFoundMessage />}
 
       <MovieSearchLIst moviesBySearch={movies} />
+
       <ToastContainer autoClose={3000} theme={'colored'} />
     </>
   );
