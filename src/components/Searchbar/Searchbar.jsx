@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function Searchbar({ onSubmit }) {
   const [query, setQuery] = useState('');
@@ -8,6 +9,9 @@ export default function Searchbar({ onSubmit }) {
   };
   const handleSubmit = e => {
     e.preventDefault();
+    if (query.trim() === '') {
+      return toast.error('Введите Ваш Запрос');
+    }
 
     onSubmit(query);
     setQuery('');

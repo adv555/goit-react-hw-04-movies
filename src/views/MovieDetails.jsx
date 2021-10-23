@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import {
   useParams,
   Route,
@@ -9,9 +9,18 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { TiArrowLeftThick } from 'react-icons/ti';
-import * as MoviesAPI from '../../services/api';
-import CastSubView from '../CastSubView';
-import ReviewSubView from '../ReviewSubView';
+import * as MoviesAPI from '../services/api';
+// import CastSubView from '../components/CastSubView';
+// import ReviewSubView from '../components/ReviewSubView';
+
+const CastSubView = lazy(() =>
+  import('../components/CastSubView' /* webpackChunkName: "cast-subview" */),
+);
+const ReviewSubView = lazy(() =>
+  import(
+    '../components/ReviewSubView' /* webpackChunkName: "review-subview" */
+  ),
+);
 
 function MovieInfo() {
   const { movieId } = useParams();
@@ -95,15 +104,17 @@ function MovieInfo() {
             <hr />
           </div>
           <div>
-            <Switch>
-              <Route path={`${path}/cast`} exact>
-                <CastSubView />
-              </Route>
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <Switch>
+                <Route path={`${path}/cast`} exact>
+                  <CastSubView />
+                </Route>
 
-              <Route path={`${path}/reviews`} exact>
-                <ReviewSubView />
-              </Route>
-            </Switch>
+                <Route path={`${path}/reviews`} exact>
+                  <ReviewSubView />
+                </Route>
+              </Switch>
+            </Suspense>
           </div>
         </>
       )}

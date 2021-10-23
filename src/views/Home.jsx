@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import * as MovieAPI from '../../services/api';
+import * as MovieAPI from '../services/api';
 
 function Home() {
   const location = useLocation();

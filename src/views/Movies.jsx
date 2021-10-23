@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import Searchbar from '../Searchbar/Searchbar';
-import MovieSearchLIst from '../MovieLIst/MovieList';
-import * as MoviesAPI from '../../services/api';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Searchbar from '../components/Searchbar/';
+import MovieSearchLIst from '../components/MovieLIst';
+import * as MoviesAPI from '../services/api';
+import NothingFoundMessage from '../components/Notices';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -10,9 +13,9 @@ const Movies = () => {
   const history = useHistory();
   const location = useLocation();
 
-  console.log(query);
-  console.log(history);
-  console.log(location.search);
+  // console.log(query);
+  // console.log(history);
+  // console.log(location.search);
 
   useEffect(() => {
     if (!query) {
@@ -28,9 +31,9 @@ const Movies = () => {
   }, [query]);
 
   useEffect(() => {
-    if (location.search !== '') {
-      return;
-    }
+    // if (location.search !== '') {
+    //   return;
+    // }
     const getLocationSearch = new URLSearchParams(location.search).get(
       'search',
     );
@@ -42,7 +45,10 @@ const Movies = () => {
     <>
       <Searchbar onSubmit={setQuery} />
       <h1>Movies page</h1>
+      {movies && movies.length < 1 && <NothingFoundMessage />}
+
       <MovieSearchLIst moviesBySearch={movies} />
+      <ToastContainer autoClose={3000} theme={'colored'} />
     </>
   );
 };
