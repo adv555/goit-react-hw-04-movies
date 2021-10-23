@@ -7,6 +7,7 @@ export default function Searchbar({ onSubmit }) {
   const handleChange = e => {
     setQuery(e.target.value);
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     if (query.trim() === '') {

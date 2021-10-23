@@ -7,7 +7,6 @@ import MovieSearchLIst from '../components/MovieLIst';
 import * as MoviesAPI from '../services/api';
 import scrollContent from '../utils/scroll';
 import LoadMoreButon from '../components/Buttons/LoadMoreBtn';
-// import NothingFoundMessage from '../components/Notices';
 
 const Movies = () => {
   const history = useHistory();
@@ -16,6 +15,7 @@ const Movies = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!query) {
@@ -28,9 +28,9 @@ const Movies = () => {
   }, [query]);
 
   useEffect(() => {
-    // if (location.search === '') {
-    //   return;
-    // }
+    if (location.search === '') {
+      return;
+    }
     const getLocationSearch = new URLSearchParams(location.search).get(
       'search',
     );
@@ -42,6 +42,7 @@ const Movies = () => {
     console.log(query);
     setQuery(query);
     setMovies([]);
+    setError(null);
   };
 
   const getMovies = () => {
@@ -59,15 +60,13 @@ const Movies = () => {
           scrollContent();
         }
       })
-      .catch(error => console.log(error));
+      .catch(setError);
   };
 
   return (
     <>
-      <Searchbar onSubmit={onChangeQuery} />
-      <h1>Movies page</h1>
-      {/* {movies && movies.length < 1 && <NothingFoundMessage />} */}
-      {/* { error && <h1>{error.message}</h1>} */}
+      <Searchbar onSubmit={onChangeQuery} placeholder={query} />
+      {error && <h1>Something went wrong! {error.message}</h1>}
 
       <MovieSearchLIst moviesBySearch={movies} />
       {movies && movies.length > 0 && <LoadMoreButon onClick={getMovies} />}
