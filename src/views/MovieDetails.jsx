@@ -40,11 +40,10 @@ function MovieInfo() {
   // console.log(match);
   // console.log(params);
   // console.log(url, path);
-  console.log(location);
-  console.log(history);
+  console.log(location.state);
+  // console.log(history)
 
   const onGoBack = () => {
-    // console.log(e);
     history.push(location?.state?.from?.location ?? '/');
   };
 
@@ -87,7 +86,7 @@ function MovieInfo() {
                   activeClassName="activeLink"
                   to={{
                     pathname: `${url}/cast`,
-                    state: { from: location },
+                    state: { from: { location } },
                   }}
                 >
                   Cast
@@ -97,7 +96,11 @@ function MovieInfo() {
                 <NavLink
                   className="link"
                   activeClassName="activeLink"
-                  to={`${url}/reviews`}
+                  // to={`${url}/reviews`}
+                  to={{
+                    pathname: `${url}/reviews`,
+                    state: { from: { location } },
+                  }}
                 >
                   Reviews
                 </NavLink>

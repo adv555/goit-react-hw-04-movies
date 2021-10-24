@@ -1,0 +1,107 @@
+@import '../../variables.module.scss';
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -20px;
+  margin-top: -20px;
+  padding: 20px 0;
+}
+.item {
+  flex-basis: calc(100% / 2 - 20px);
+  margin-left: 20px;
+  margin-top: 20px;
+  //   opacity: 1;
+  //   transition: opacity $duration $timing-function;
+
+  &:hover,
+  &:focus {
+    color: $base-color;
+    cursor: pointer;
+    transform: scale(1.03);
+
+    box-shadow: 0 0 10px rgba(213, 218, 218, 0.993);
+
+    // opacity: 0.8;
+    transition: all $duration $timing-function;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1169px) {
+    flex-basis: calc(100% / 3 - 20px);
+  }
+
+  @media screen and (min-width: 1170px) {
+    flex-basis: calc(100% / 4 - 20px);
+  }
+}
+
+.link {
+  color: inherit;
+
+  text-decoration: none;
+}
+.card {
+  position: relative;
+  border-radius: 5px;
+}
+
+.thumb {
+  height: 250px;
+
+  @media screen and (min-width: 370px) and (max-width: 767px) {
+    height: 300px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1169px) {
+    height: 350px;
+  }
+
+  @media screen and (min-width: 1170px) {
+    height: 400px;
+  }
+}
+
+.poster {
+  // width: 100%;
+  height: 100%;
+  border-radius: 5px 5px 0 0;
+
+  // object-fit: contain;
+  object-position: top;
+}
+
+.text {
+  //   display: flex;
+  //   justify-content: center;
+  padding: 10px;
+  // margin-top: 10px;
+
+  //   font-size: 18px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
+
+.rating {
+  position: absolute;
+  width: 50px;
+  text-align: center;
+  top: 15px;
+  right: 15px;
+  padding: 5px;
+  border-radius: 5px;
+
+  color: #ffffff;
+  background-color: $accent-bg;
+
+  &--hight {
+    @extend .rating;
+    background-color: green;
+  }
+
+  &--low {
+    @extend .rating;
+    background-color: tomato;
+  }
+}

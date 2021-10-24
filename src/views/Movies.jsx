@@ -68,7 +68,7 @@ const Movies = () => {
       <Searchbar onSubmit={onChangeQuery} placeholder={query} />
       {error && <h1>Something went wrong! {error.message}</h1>}
 
-      <MovieSearchLIst moviesBySearch={movies} />
+      <MovieSearchLIst movies={movies} label="Back to search" />
       {movies && movies.length > 0 && <LoadMoreButon onClick={getMovies} />}
 
       <ToastContainer autoClose={3000} theme={'colored'} />
