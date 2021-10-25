@@ -5,18 +5,22 @@ import AppBar from './components/AppBar';
 import Container from './components/Container/Container';
 
 const HomeView = lazy(() =>
-  import('./views/Home.jsx' /* webpackChunkName: "home-view"  */),
+  import('./views/HomeView/Home.jsx' /* webpackChunkName: "home-view"  */),
 );
 const MoviesView = lazy(() =>
-  import('./views/Movies.jsx' /* webpackChunkName: "movies-view"  */),
+  import(
+    './views/MoviesView/Movies.jsx' /* webpackChunkName: "movies-view"  */
+  ),
 );
 const MovieDetailsView = lazy(() =>
   import(
-    './views/MovieDetails.jsx' /* webpackChunkName: "movie-details-view"  */
+    './views/MovieDetailsView/MovieDetails.jsx' /* webpackChunkName: "movie-details-view"  */
   ),
 );
 const NotFoundView = lazy(() =>
-  import('./views/NotFound.jsx' /* webpackChunkName: "not-found-view"  */),
+  import(
+    './views/NotFoundView/NotFound.jsx' /* webpackChunkName: "not-found-view"  */
+  ),
 );
 
 function App() {
@@ -26,7 +30,12 @@ function App() {
       <Container>
         <Suspense
           fallback={
-            <Loader type="ThreeDots" color="#3f51b5" height={80} width={80} />
+            <Loader
+              type="ThreeDots"
+              color="#2196f3"
+              height={'50vh'}
+              width={80}
+            />
           }
         >
           <Switch>

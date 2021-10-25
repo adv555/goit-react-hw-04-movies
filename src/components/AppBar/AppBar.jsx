@@ -2,9 +2,9 @@ import Navigation from '../Navigation';
 
 function AppBar() {
   return (
-    // <header className="Searchbar">
-    <Navigation />
-    // </header>
+    <header>
+      <Navigation />
+    </header>
   );
 }
 export default AppBar;

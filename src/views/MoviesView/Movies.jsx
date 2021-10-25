@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Searchbar from '../components/Searchbar/';
-import MovieSearchLIst from '../components/MovieLIst';
-import * as MoviesAPI from '../services/api';
-import scrollContent from '../utils/scroll';
-import LoadMoreButon from '../components/Buttons/LoadMoreBtn';
+import Searchbar from '../../components/Searchbar';
+import MovieSearchLIst from '../../components/MovieLIst';
+import LoadMoreButon from '../../components/Buttons/LoadMoreBtn';
+import scrollContent from '../../utils/scroll';
+import * as MoviesAPI from '../../services/api';
 
 const Movies = () => {
   const history = useHistory();
@@ -14,9 +14,8 @@ const Movies = () => {
 
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
-  console.log(query, page);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     if (!query) {
@@ -37,15 +36,14 @@ const Movies = () => {
     );
 
     setQuery(getLocationSearch);
-    // console.log(query);
   }, [location.search]);
 
   const onChangeQuery = query => {
     console.log(query);
     setQuery(query);
     setMovies([]);
-    setError(null);
     setPage(1);
+    setError(null);
   };
 
   const getMovies = () => {

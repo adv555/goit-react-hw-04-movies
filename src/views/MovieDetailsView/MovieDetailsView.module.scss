@@ -1,0 +1,50 @@
+.card {
+  position: relative;
+
+  padding-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.cardThumb {
+  /* min-width: 400px; */
+  padding: 15px;
+  max-height: 60vh;
+}
+
+.cardThumbImage {
+  height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
+}
+.cardDesc {
+  max-width: 600px;
+  text-align: left;
+  padding: 15px;
+}
+.title {
+  text-align: left;
+  color: #292c33;
+  margin-bottom: 20px;
+}
+.text {
+  /* text-indent: 15px; */
+  text-align: justify;
+  margin-bottom: 10px;
+  /* letter-spacing: 1px; */
+}
+
+.subTitle {
+  margin-bottom: 10px;
+  text-align: left;
+}
+.message {
+  text-align: center;
+  // color: tomato;
+  // font-size: 32px;
+  // width: 300px;
+  margin: 0 auto;
+  margin-top: 70px;
+}

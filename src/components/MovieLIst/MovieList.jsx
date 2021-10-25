@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styles from './MovieList.module.scss';
 import placeholder from '../../assets/images/placeholder.png';
 
 export default function GalleryList({ movies, label }) {
+  console.log(movies);
   const location = useLocation();
   const imgUrl = 'https://image.tmdb.org/t/p/w500/';
 
@@ -56,6 +58,20 @@ export default function GalleryList({ movies, label }) {
     </ul>
   );
 }
+
+GalleryList.prototype = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string,
+      title: PropTypes.string,
+      poster_path: PropTypes.string,
+      vote_average: PropTypes.number,
+    }),
+  ),
+  label: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
+};
 
 // <Link
 //   to={{

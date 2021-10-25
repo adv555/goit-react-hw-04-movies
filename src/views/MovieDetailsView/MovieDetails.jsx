@@ -1,3 +1,4 @@
+import s from './MovieDetailsView.module.scss';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import {
   useParams,
@@ -8,16 +9,16 @@ import {
   useLocation,
   useHistory,
 } from 'react-router-dom';
-// import { TiArrowLeftThick } from 'react-icons/ti';
-import * as MoviesAPI from '../services/api';
-import OnGoBackButton from '../components/Buttons/OnGoBackBtn/OnGoBackBtn';
+
+import * as MoviesAPI from '../../services/api';
+import OnGoBackButton from '../../components/Buttons/OnGoBackBtn/OnGoBackBtn';
 
 const CastSubView = lazy(() =>
-  import('../components/CastSubView' /* webpackChunkName: "cast-subview" */),
+  import('../../components/CastSubView' /* webpackChunkName: "cast-subview" */),
 );
 const ReviewSubView = lazy(() =>
   import(
-    '../components/ReviewSubView' /* webpackChunkName: "review-subview" */
+    '../../components/ReviewSubView' /* webpackChunkName: "review-subview" */
   ),
 );
 
@@ -35,21 +36,13 @@ function MovieInfo() {
       .catch(error => console.log(error));
   }, [movieId]);
 
-  // console.log(movieId);
-  // console.log(movie);
-  // console.log(match);
-  // console.log(params);
-  // console.log(url, path);
-  console.log(location.state);
-  // console.log(history)
-
   const onGoBack = () => {
     history.push(location?.state?.from?.location ?? '/');
   };
 
   return (
     <>
-      {movie && movie.status === 'Released' && (
+      {movie && movie.status === 'Released' ? (
         <>
           <OnGoBackButton
             onClick={onGoBack}
@@ -59,26 +52,30 @@ function MovieInfo() {
             <TiArrowLeftThick />
             {location?.state?.from?.label ?? 'Go Back'}
           </button> */}
-          <div className="card">
-            <div className="cardThumb">
+          <div className={s.card}>
+            <div className={s.cardThumb}>
               <img
-                className="cardThumb-image"
+                className={s.cardThumbImage}
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt={movie.title}
               />
             </div>
-            <div className="cardDesc">
-              <h2>{`${movie.title} (${movie.release_date.split('-')[0]})`}</h2>
-              <p>{`User Score: ${movie.vote_average}`}</p>
-              <h3>Overeview</h3>
-              <p>{movie.overview}</p>
-              <h3>Genres</h3>
-              <p>{movie.genres.map(obj => Object.values(obj)[1]).join(' ')}</p>
+            <div className={s.cardDesc}>
+              <h2 className={s.title}>{`${movie.title} (${
+                movie.release_date.split('-')[0]
+              })`}</h2>
+              <p className={s.text}>{`User Score: ${movie.vote_average}`}</p>
+              <h3 className={s.subTitle}>Overeview</h3>
+              <p className={s.text}>{movie.overview}</p>
+              <h3 className={s.subTitle}>Genres</h3>
+              <p className={s.text}>
+                {movie.genres.map(obj => Object.values(obj)[1]).join(' ')}
+              </p>
             </div>
           </div>
           <div>
             <hr />
-            <h3>Additional information</h3>
+            <h3 className={s.subTitle}>Additional information</h3>
             <ul className="list">
               <li>
                 <NavLink
@@ -123,6 +120,10 @@ function MovieInfo() {
             </Suspense>
           </div>
         </>
+      ) : (
+        <h1 className={s.message}>
+          The resource you requested could not be found!
+        </h1>
       )}
     </>
   );

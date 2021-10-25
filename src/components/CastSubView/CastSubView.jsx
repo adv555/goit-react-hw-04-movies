@@ -1,16 +1,13 @@
+import s from './CastSubView.module.scss';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as MoviesAPI from '../../services/api';
 
 export default function CastSubView() {
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
-  // const location = useLocation();
-  // const params = useParams();
-  // console.log(params);
-  // console.log(movieId);
-  // console.log(cast);
-  // console.log(location.state);
+  console.log(cast);
 
   useEffect(() => {
     MoviesAPI.fetchfMovieCast(movieId)
@@ -21,12 +18,12 @@ export default function CastSubView() {
 
   return (
     <div>
-      <h3>Cast</h3>
+      {/* <h3 className={s.SupTitle}>Cast</h3> */}
       {cast && cast.length !== 0 ? (
-        <ul className="list">
+        <ul className={s.CastGallery}>
           {cast.map(({ cast_id, character, name, profile_path }) => {
             return (
-              <li key={cast_id}>
+              <li key={cast_id} className={s.GalleryItem}>
                 {profile_path && (
                   <img
                     src={
@@ -34,11 +31,12 @@ export default function CastSubView() {
                       `https://image.tmdb.org/t/p/original/${profile_path}`
                     }
                     alt={name}
-                    style={{ width: '80px' }}
+                    // style={{ width: '80px' }}
+                    className={s.GalleryItemImage}
                   />
                 )}
-                <h4>Actor: {name.toUpperCase()}</h4>
-                <p> Character:{character}</p>
+                <h4 className={s.Title}>Actor: {name.toUpperCase()}</h4>
+                <p className={s.SubTitle}> Character: {character}</p>
               </li>
             );
           })}
@@ -49,3 +47,13 @@ export default function CastSubView() {
     </div>
   );
 }
+
+CastSubView.prototype = {
+  movieId: PropTypes.string,
+  cast: PropTypes.shape({
+    cast_id: PropTypes.number.isRequired,
+    character: PropTypes.string,
+    name: PropTypes.string,
+    profile_path: PropTypes.string,
+  }),
+};

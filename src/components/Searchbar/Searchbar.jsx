@@ -1,4 +1,6 @@
+import s from './Searchbar.module.scss';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
 export default function Searchbar({ onSubmit, prevQuery }) {
@@ -26,14 +28,14 @@ export default function Searchbar({ onSubmit, prevQuery }) {
   };
 
   return (
-    <div className="Searchbar">
-      <form className="SearchForm" onSubmit={handleSubmit}>
-        <button type="submit" className="SearchForm-button">
-          <span className="SearchForm-button-label">Search</span>
+    <div className={s.Searchbar}>
+      <form className={s.SearchForm} onSubmit={handleSubmit}>
+        <button type="submit" className={s.SearchFormButton}>
+          <span className={s.SearchFormButtonLabel}>Search</span>
         </button>
 
         <input
-          className="SearchForm-input"
+          className={s.SearchFormInput}
           type="text"
           autoComplete="off"
           autoFocus
@@ -45,3 +47,8 @@ export default function Searchbar({ onSubmit, prevQuery }) {
     </div>
   );
 }
+
+Searchbar.prototype = {
+  onSubmit: PropTypes.func.isRequired,
+  prevQuery: PropTypes.string,
+};

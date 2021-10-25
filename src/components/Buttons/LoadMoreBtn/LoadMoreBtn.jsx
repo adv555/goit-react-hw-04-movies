@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import styles from './LoadMoreBtn.module.scss';
+import PropTypes from 'prop-types';
 
 export default function Button({ onClick }) {
   return (

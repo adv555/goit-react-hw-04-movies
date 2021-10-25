@@ -1,14 +1,13 @@
+import s from './ReviewSubview.module.scss';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as MoviesAPI from '../../services/api';
 
 function ReviewSubView() {
   const { movieId } = useParams();
-  // const location = useLocation();
   const [reviews, setReview] = useState(null);
-  //   console.log(params);
-  //   console.log(reviews);
-  // console.log(location);
+  console.log(reviews);
 
   useEffect(() => {
     MoviesAPI.fetchfMovieReview(movieId)
@@ -19,25 +18,35 @@ function ReviewSubView() {
 
   return (
     <div>
-      <h3>Reviews</h3>
+      {/* <h3 className={s.title}>Reviews</h3> */}
       {reviews && reviews.length !== 0 ? (
-        <ul className="list">
+        <ul className={s.Gallery}>
           {reviews.map(
-            ({ id, author, author_details, created_at, content }) => {
+            ({
+              id,
+              author,
+              author_details: { avatar_path },
+              created_at,
+              content,
+            }) => {
               return (
-                <li key={id}>
-                  {author_details.avatar_path && (
+                <li key={id} className={s.GalleryItem}>
+                  {avatar_path && (
                     <img
                       src={
                         // author_details.avatar_path.slice(1) ||
-                        `https://image.tmdb.org/t/p/original/${author_details.avatar_path}`
+                        `https://image.tmdb.org/t/p/original/${avatar_path}`
                       }
                       alt={author}
                       style={{ width: '80px' }}
+                      className={s.GalleryItemImage}
                     />
                   )}
                   <h4>Author: {author.toUpperCase()}</h4>
-                  <p>Created: {created_at.split('T')[0]}</p>
+                  <p className={s.text}>
+                    <b>Created:</b> {created_at.split('T')[0]}
+                  </p>
+
                   <p>{content}</p>
                 </li>
               );
@@ -53,4 +62,12 @@ function ReviewSubView() {
 
 export default ReviewSubView;
 
-// author_details: avatar_path: '/https://secure.gravatar.com/avatar/3593437cbd05cebe0a4ee753965a8ad1.jpg';
+ReviewSubView.prototype = {
+  movieId: PropTypes.string,
+  reviews: PropTypes.shape({
+    id: PropTypes.string,
+    author: PropTypes.string,
+    avatar_path: PropTypes.string,
+    created_at: PropTypes.string,
+  }),
+};
