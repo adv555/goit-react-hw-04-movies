@@ -4,7 +4,6 @@ import styles from './MovieList.module.scss';
 import placeholder from '../../assets/images/placeholder.png';
 
 export default function GalleryList({ movies, label }) {
-  console.log(movies);
   const location = useLocation();
   const imgUrl = 'https://image.tmdb.org/t/p/w500/';
 

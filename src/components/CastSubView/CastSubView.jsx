@@ -7,7 +7,6 @@ import * as MoviesAPI from '../../services/api';
 export default function CastSubView() {
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
-  console.log(cast);
 
   useEffect(() => {
     MoviesAPI.fetchfMovieCast(movieId)

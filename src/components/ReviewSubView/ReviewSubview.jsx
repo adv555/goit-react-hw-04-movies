@@ -7,7 +7,6 @@ import * as MoviesAPI from '../../services/api';
 function ReviewSubView() {
   const { movieId } = useParams();
   const [reviews, setReview] = useState(null);
-  console.log(reviews);
 
   useEffect(() => {
     MoviesAPI.fetchfMovieReview(movieId)

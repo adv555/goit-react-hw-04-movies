@@ -39,7 +39,6 @@ const Movies = () => {
   }, [location.search]);
 
   const onChangeQuery = query => {
-    console.log(query);
     setQuery(query);
     setMovies([]);
     setPage(1);
