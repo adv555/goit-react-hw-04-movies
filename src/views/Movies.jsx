@@ -16,6 +16,7 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
+  console.log(query, page);
 
   useEffect(() => {
     if (!query) {
@@ -36,6 +37,7 @@ const Movies = () => {
     );
 
     setQuery(getLocationSearch);
+    // console.log(query);
   }, [location.search]);
 
   const onChangeQuery = query => {
@@ -43,6 +45,7 @@ const Movies = () => {
     setQuery(query);
     setMovies([]);
     setError(null);
+    setPage(1);
   };
 
   const getMovies = () => {
@@ -65,7 +68,7 @@ const Movies = () => {
 
   return (
     <>
-      <Searchbar onSubmit={onChangeQuery} placeholder={query} />
+      <Searchbar onSubmit={onChangeQuery} prevQuery={query} />
       {error && <h1>Something went wrong! {error.message}</h1>}
 
       <MovieSearchLIst movies={movies} label="Back to search" />

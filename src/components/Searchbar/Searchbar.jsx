@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-export default function Searchbar({ onSubmit }) {
+export default function Searchbar({ onSubmit, prevQuery }) {
   const [query, setQuery] = useState('');
 
   const handleChange = e => {
     setQuery(e.target.value);
   };
+
+  useEffect(() => {
+    if (!prevQuery) {
+      return;
+    }
+    setQuery(prevQuery);
+  }, [prevQuery]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -32,6 +39,7 @@ export default function Searchbar({ onSubmit }) {
           autoFocus
           placeholder="Search ..."
           onChange={handleChange}
+          value={query}
         />
       </form>
     </div>
