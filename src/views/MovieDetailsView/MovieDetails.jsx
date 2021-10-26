@@ -83,7 +83,8 @@ function MovieInfo() {
                   activeClassName="activeLink"
                   to={{
                     pathname: `${url}/cast`,
-                    state: { from: { location } },
+                    // state: { from: { location } },
+                    state: { ...location.state },
                   }}
                 >
                   Cast
@@ -96,7 +97,8 @@ function MovieInfo() {
                   // to={`${url}/reviews`}
                   to={{
                     pathname: `${url}/reviews`,
-                    state: { from: { location } },
+                    // state: { from: { location } },
+                    state: { ...location.state },
                   }}
                 >
                   Reviews

@@ -21,8 +21,6 @@ const Movies = () => {
     if (!query) {
       return;
     }
-    history.push({ ...location, search: `search=${query}` });
-
     getMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
@@ -43,6 +41,7 @@ const Movies = () => {
     setMovies([]);
     setPage(1);
     setError(null);
+    history.push({ ...location, search: `search=${query}` });
   };
 
   const getMovies = () => {
